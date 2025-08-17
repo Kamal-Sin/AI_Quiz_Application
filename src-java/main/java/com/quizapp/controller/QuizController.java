@@ -26,7 +26,7 @@ import com.quizapp.services.AiQuizService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "https://*.vercel.app", "https://*.railway.app"})
+@CrossOrigin(origins = { "http://localhost:3000", "https://*.vercel.app", "https://*.railway.app" })
 @RequestMapping("quiz")
 public class QuizController {
 
