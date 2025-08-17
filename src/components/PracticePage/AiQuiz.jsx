@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_ENDPOINTS } from "../../utils/api";
 
 const AiQuiz = () => {
    const [grade, setGrade] = useState("");
@@ -21,7 +22,7 @@ const AiQuiz = () => {
       setError("");
 
       try {
-         const response = await fetch("http://localhost:8080/quiz/generate-ai", {
+         const response = await fetch(API_ENDPOINTS.GENERATE_AI_QUIZ, {
             method: "POST",
             headers: {
                "Content-Type": "application/json",

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Spinner from "../HomePage/Spinner";
+import { API_ENDPOINTS } from "../../utils/api";
 
 const GetQuiz = () => {
    const { quizId } = useParams();
@@ -15,7 +16,7 @@ const GetQuiz = () => {
    const [attempted, setAttempted] = useState(false);
    const [notFound, setNotFound] = useState(false);
    const loadInstructions = async () => {
-      const url = "http://localhost:8080/quiz/attempt/" + quizId;
+      const url = API_ENDPOINTS.QUIZ_ATTEMPT + "/" + quizId;
       try {
          const res = await fetch(url, {
             headers: {
