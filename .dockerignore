@@ -1,0 +1,45 @@
+# Node.js files
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React build files
+build/
+dist/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git files
+.git/
+.gitignore
+
+# Documentation
+README.md
+DEPLOYMENT-GUIDE.md
+deploy-render.md
+STARTUP-GUIDE.md
+
+# Scripts
+start-apps.bat
+start-apps.ps1
+deploy.sh
+
+# Database files
+*.db
+*.mv.db
+quizdb.*
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
