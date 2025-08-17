@@ -1,187 +1,223 @@
-# Quiz Application
+# 🧠 AI-Powered Quiz Application
 
-A full-stack quiz application built with React (frontend) and Spring Boot (backend).
+A modern, full-stack quiz application built with React, Spring Boot, and Google's Gemini AI. Create custom quizzes, take AI-generated quizzes, and track your progress!
 
-## Project Structure
+## ✨ Features
 
-```
-├── src-java/main/java/com/quizapp/ # Spring Boot backend
-│   ├── controller/                 # REST controllers
-│   ├── models/                     # JPA entities
-│   ├── services/                   # Business logic
-│   ├── repository/                 # Data access layer
-│   ├── dto/                        # Data transfer objects
-│   ├── configurations/             # Spring configurations
-│   ├── filters/                    # Custom filters
-│   └── keys/                       # Composite keys
-├── src-java/main/resources/        # Spring Boot resources
-│   └── application.properties      # Application configuration
-├── src/                            # React frontend
-│   ├── components/                 # React components
-│   │   ├── HomePage/               # Home page components
-│   │   ├── PracticePage/           # Quiz practice components
-│   │   ├── CreationsPage/          # Quiz creation components
-│   │   └── RecentsPage/            # Recent quizzes components
-│   ├── App.js                      # Main React component
-│   └── index.js                    # React entry point
-├── public/                         # React public files
-├── assets/                         # Static assets (images, etc.)
-├── package.json                    # Frontend dependencies
-└── pom.xml                         # Backend dependencies
-```
+- 🎯 **Custom Quiz Creation**: Create your own quizzes with multiple choice questions
+- 🤖 **AI-Generated Quizzes**: Generate quizzes using Google's Gemini AI
+- 👤 **User Authentication**: Register, login, and manage your account
+- 📊 **Progress Tracking**: View your quiz attempts and scores
+- 🎨 **Modern UI**: Beautiful, responsive interface with Bootstrap
+- 🔒 **Secure**: JWT-based authentication and secure API endpoints
 
-## Features
+## 🛠️ Tech Stack
 
-- **User Authentication**: Login system
-- **Quiz Creation**: Create custom quizzes with multiple questions
-- **Quiz Practice**: Take quizzes with timer and scoring
-- **Recent Quizzes**: View recently attempted quizzes
-- **Responsive Design**: Bootstrap-based UI
+### Frontend
 
-## Prerequisites
+- **React 18** - Modern UI framework
+- **React Router** - Client-side routing
+- **Bootstrap 5** - Responsive design
+- **React Toastify** - User notifications
+
+### Backend
+
+- **Spring Boot 2.7** - RESTful API
+- **Spring Security** - Authentication & authorization
+- **Spring Data JPA** - Database operations
+- **H2 Database** - In-memory database (development)
+- **Google Gemini AI** - AI-powered quiz generation
+
+## 🚀 Live Demo
+
+- **Frontend**: [Deployed on Vercel](https://your-app.vercel.app)
+- **Backend**: [Deployed on Render](https://your-backend.onrender.com)
+
+## 📦 Installation
+
+### Prerequisites
 
 - Java 17 or higher
 - Node.js 16 or higher
-- npm or yarn
+- Maven (or use Maven Wrapper)
+- Google Gemini API key
 
-## Setup and Running
+### Local Development
 
-### 1. Install Frontend Dependencies
-
-```bash
-npm install
-```
-
-### 2. Start Frontend (React)
-
-```bash
-npm start
-```
-
-The React app will run on http://localhost:3000
-
-### 3. Start Backend (Spring Boot)
-
-#### Option A: Using Maven Wrapper (Recommended)
-
-```bash
-# Set JAVA_HOME if not already set
-set JAVA_HOME=C:\Program Files\Java\jdk-17
-
-# Run the application
-.\mvnw.cmd spring-boot:run
-```
-
-#### Option B: Using Maven (if installed globally)
-
-```bash
-mvn spring-boot:run
-```
-
-The Spring Boot app will run on http://localhost:8080
-
-### 4. Database Console
-
-- H2 Console: http://localhost:8080/h2-console
-- JDBC URL: `jdbc:h2:mem:quizdb`
-- Username: `sa`
-- Password: `password`
-
-## API Endpoints
-
-- `GET /api/quizzes` - Get all quizzes
-- `POST /api/quizzes` - Create a new quiz
-- `GET /api/quizzes/{id}` - Get quiz by ID
-- `POST /api/quizzes/{id}/submit` - Submit quiz answers
-- `GET /api/users` - Get user information
-
-## Development Notes
-
-- The application uses H2 in-memory database for development
-- Frontend communicates with backend via REST API
-- Bootstrap is used for styling
-- React Router is used for navigation
-- Toast notifications are implemented with react-toastify
-
-## Quick Start
-
-### Option 1: Using the Batch Script (Windows)
-
-```bash
-start-apps.bat
-```
-
-### Option 2: Manual Start
-
-1. **Set JAVA_HOME** (if not already set):
+1. **Clone the repository**
 
    ```bash
-   set JAVA_HOME=C:\Program Files\Java\jdk-23
+   git clone https://github.com/Kamal-Sin/AI_Quiz_Application.git
+   cd AI_Quiz_Application
    ```
 
-2. **Start Backend**:
+2. **Install frontend dependencies**
 
    ```bash
-   .\mvnw.cmd spring-boot:run
+   npm install
    ```
 
-3. **Start Frontend** (in a new terminal):
+3. **Configure environment variables**
+
+   - Create `.env` file in root directory
+   - Add your Gemini API key:
+     ```
+     REACT_APP_GEMINI_API_KEY=your_gemini_api_key_here
+     ```
+
+4. **Start the applications**
+
    ```bash
+   # Option 1: Use the startup script
+   ./start-apps.bat  # Windows
+   ./start-apps.ps1  # PowerShell
+
+   # Option 2: Manual startup
+   # Terminal 1 - Backend
+   ./mvnw.cmd spring-boot:run
+
+   # Terminal 2 - Frontend
    npm start
    ```
 
-## Missing Assets
+5. **Access the application**
+   - Frontend: http://localhost:3000
+   - Backend: http://localhost:8080
+   - H2 Database Console: http://localhost:8080/h2-console
 
-The following assets need to be added to the `assets/` directory:
+## 🌐 Deployment
 
-- `menu button.jpg` - Menu button image
-- `online-exam-or-test.webp` - Home page image
+### Frontend (Vercel)
 
-**Note**: The application has been modified to use placeholder elements instead of these images, so it will run without them.
+1. Connect your GitHub repository to Vercel
+2. Set environment variable: `REACT_APP_API_URL`
+3. Deploy automatically
 
-## Current Status
+### Backend (Render)
 
-✅ **Frontend**: React app running on http://localhost:3000 (Status: 200 OK)
-✅ **Backend**: Spring Boot app running on http://localhost:8080 (Status: 401 Unauthorized - expected due to security)
-✅ **Database**: H2 in-memory database accessible at http://localhost:8080/h2-console
-✅ **Dependencies**: All required dependencies installed
-✅ **Structure**: Proper Maven/React project structure
-✅ **Compilation**: Both frontend and backend compile successfully
-✅ **Applications**: Both frontend and backend are running and responding to requests
-✅ **AI Quiz Generation**: Gemini API integration added (requires API key configuration)
+1. Connect your GitHub repository to Render
+2. Set environment variable: `GEMINI_API_KEY`
+3. Configure as Java Web Service
 
-## AI Quiz Generation Setup
+See [DEPLOYMENT-GUIDE.md](DEPLOYMENT-GUIDE.md) for detailed instructions.
 
-To enable AI-generated quizzes using Google's Gemini API:
+## 📁 Project Structure
 
-1. **Get a Gemini API Key**:
+```
+AI_Quiz_Application/
+├── src/                    # React frontend
+│   ├── components/         # React components
+│   ├── assets/            # Static assets
+│   └── index.js           # Entry point
+├── src-java/              # Spring Boot backend
+│   └── main/java/com/quizapp/
+│       ├── controller/    # REST controllers
+│       ├── models/        # JPA entities
+│       ├── services/      # Business logic
+│       └── filters/       # Security filters
+├── public/                # Public assets
+├── pom.xml               # Maven configuration
+├── package.json          # Node.js dependencies
+└── README.md             # This file
+```
 
-   - Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-   - Create a new API key
-   - Copy the API key
+## 🔧 Configuration
 
-2. **Configure the API Key**:
+### Environment Variables
 
-   - Open `src-java/main/resources/application.properties`
-   - Uncomment the line: `# gemini.api.key=YOUR_GEMINI_API_KEY_HERE`
-   - Replace `YOUR_GEMINI_API_KEY_HERE` with your actual API key
-   - Example: `gemini.api.key=AIzaSyC...`
+#### Frontend
 
-3. **Restart the Backend**:
+- `REACT_APP_API_URL`: Backend API URL
+- `REACT_APP_GEMINI_API_KEY`: Gemini API key (optional)
 
-   - Stop the Spring Boot application
-   - Restart it to load the new configuration
+#### Backend
 
-4. **Test the Feature**:
-   - Go to the Practice page
-   - Click on "Want to practice with A.I Generated Quiz"
-   - Fill in the form (grade, difficulty, subject, topic)
-   - Click "Start" to generate a quiz
+- `GEMINI_API_KEY`: Google Gemini API key
+- `PORT`: Server port (auto-set by deployment platform)
 
-**Features**:
+### Database
 
-- Generates 5 multiple-choice questions based on your specifications
-- Questions are appropriate for the selected grade level and difficulty
-- Automatic scoring and results display
-- Option to retake quizzes
-- Responsive UI with progress tracking
+- **Development**: H2 in-memory database
+- **Production**: Configure via environment variables
+
+## 🎯 API Endpoints
+
+### Authentication
+
+- `POST /user/register` - User registration
+- `POST /user/login` - User login
+- `GET /user/getUser` - Get current user
+
+### Quizzes
+
+- `POST /quiz/create` - Create custom quiz
+- `GET /quiz/getQuiz/{id}` - Get quiz details
+- `POST /quiz/submit` - Submit quiz answers
+- `POST /quiz/generate-ai` - Generate AI quiz
+
+### User Data
+
+- `GET /user/attempted` - Get user's quiz attempts
+- `GET /user/quizzes` - Get user's created quizzes
+
+## 🤖 AI Quiz Generation
+
+The application uses Google's Gemini AI to generate quizzes based on:
+
+- **Grade Level**: Elementary, Middle, High School, College
+- **Difficulty**: Easy, Medium, Hard
+- **Subject**: Any academic subject
+- **Topic**: Specific topic within the subject
+
+## 🔒 Security Features
+
+- JWT-based authentication
+- Password encryption with BCrypt
+- CORS configuration
+- Input validation
+- SQL injection prevention
+
+## 🧪 Testing
+
+### Frontend
+
+```bash
+npm test
+```
+
+### Backend
+
+```bash
+./mvnw.cmd test
+```
+
+## 📊 Performance
+
+- **Frontend**: Optimized with React 18 features
+- **Backend**: Spring Boot with optimized JPA queries
+- **Database**: Efficient indexing and query optimization
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 🙏 Acknowledgments
+
+- Google Gemini AI for quiz generation
+- Spring Boot team for the excellent framework
+- React team for the amazing frontend library
+- Bootstrap team for the UI components
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/Kamal-Sin/AI_Quiz_Application/issues)
+- **Documentation**: [DEPLOYMENT-GUIDE.md](DEPLOYMENT-GUIDE.md)
+- **Email**: kamal364997@gmail.com
+
+---
+
+⭐ **Star this repository if you found it helpful!**
