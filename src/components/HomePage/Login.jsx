@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Spinner from "./Spinner";
+import { API_ENDPOINTS } from "../../utils/api";
 
 const Login = (props) => {
    const [showSpinner, setShowSpinner] = useState(false);
@@ -12,9 +13,9 @@ const Login = (props) => {
    const [lastName, setLastName] = useState();
 
    const [showRegister, setShowRegister] = useState(false);
-   async function login(e) {
-      setShowSpinner(true);
-      let url = "http://localhost:8080/user/login";
+   	async function login(e) {
+		setShowSpinner(true);
+		let url = API_ENDPOINTS.LOGIN;
       e.preventDefault();
       try {
          const data = {
@@ -45,10 +46,10 @@ const Login = (props) => {
        }
    }
 
-   async function register(e) {
-      setShowSpinner(true);
-      e.preventDefault();
-      const url = "http://localhost:8080/user/register";
+   	async function register(e) {
+		setShowSpinner(true);
+		e.preventDefault();
+		const url = API_ENDPOINTS.REGISTER;
       const data = {
          email: email,
          password: password,

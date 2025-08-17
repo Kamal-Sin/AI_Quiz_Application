@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 // import menuButtonImage from "../../assets/menu button.jpg";
 import { Link } from "react-router-dom";
 import Login from "./Login";
+import { API_ENDPOINTS } from "../../utils/api";
 
 function Header() {
    const [activeMenu, setActiveMenu] = useState("home");
@@ -19,9 +20,9 @@ function Header() {
       setLoginVisible(false);
    };
 
-   const getUser = async () => {
-      const url = "http://localhost:8080/user/getUser";
-      const pid = localStorage.getItem("pid");
+   	const getUser = async () => {
+		const url = API_ENDPOINTS.GET_USER;
+		const pid = localStorage.getItem("pid");
       if (pid !== null) {
          try {
             const res = await fetch(url, {
