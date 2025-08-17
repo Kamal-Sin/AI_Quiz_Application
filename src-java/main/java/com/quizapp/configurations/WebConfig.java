@@ -13,12 +13,8 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000", "https://*.vercel.app", "https://*.railway.app") // Allow
-                                                                                                                  // localhost
-                                                                                                                  // and
-                                                                                                                  // deployment
-                                                                                                                  // URLs
+                                registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:3000", "https://ai-quiz-application-ten.vercel.app", "https://*.vercel.app", "https://*.railway.app") // Allow localhost and deployment URLs
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);

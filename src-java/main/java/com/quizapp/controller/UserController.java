@@ -20,7 +20,7 @@ import com.quizapp.models.User;
 import com.quizapp.services.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = { "http://localhost:3000", "https://ai-quiz-application-ten.vercel.app", "https://*.vercel.app", "https://*.railway.app" })
 @RequestMapping("user")
 public class UserController {
 
