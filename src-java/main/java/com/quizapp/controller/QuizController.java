@@ -88,4 +88,9 @@ public class QuizController {
 					.body("Failed to generate quiz: " + e.getMessage());
 		}
 	}
+
+	@GetMapping("health")
+	public ResponseEntity<String> health() {
+		return ResponseEntity.ok("Quiz App Backend is running!");
+	}
 }
