@@ -1,17 +1,17 @@
-# 🧠 AI-Powered Quiz Application
+# AI-Powered Quiz Application
 
 A modern, full-stack quiz application built with React, Spring Boot, and Google's Gemini AI. Create custom quizzes, take AI-generated quizzes, and track your progress!
 
-## ✨ Features
+## Features
 
-- 🎯 **Custom Quiz Creation**: Create your own quizzes with multiple choice questions
-- 🤖 **AI-Generated Quizzes**: Generate quizzes using Google's Gemini AI
-- 👤 **User Authentication**: Register, login, and manage your account
-- 📊 **Progress Tracking**: View your quiz attempts and scores
-- 🎨 **Modern UI**: Beautiful, responsive interface with Bootstrap
-- 🔒 **Secure**: JWT-based authentication and secure API endpoints
+-  **Custom Quiz Creation**: Create your own quizzes with multiple choice questions
+-  **AI-Generated Quizzes**: Generate quizzes using Google's Gemini AI
+-  **User Authentication**: Register, login, and manage your account
+-  **Progress Tracking**: View your quiz attempts and scores
+-  **Modern UI**: Beautiful, responsive interface with Bootstrap
+-  **Secure**: JWT-based authentication and secure API endpoints
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 
@@ -28,12 +28,12 @@ A modern, full-stack quiz application built with React, Spring Boot, and Google'
 - **H2 Database** - In-memory database (development)
 - **Google Gemini AI** - AI-powered quiz generation
 
-## 🚀 Live Demo
+## Live Demo
 
 - **Frontend**: [Deployed on Vercel](https://your-app.vercel.app)
 - **Backend**: [Deployed on Render](https://your-backend.onrender.com)
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 
@@ -85,7 +85,7 @@ A modern, full-stack quiz application built with React, Spring Boot, and Google'
    - Backend: http://localhost:8080
    - H2 Database Console: http://localhost:8080/h2-console
 
-## 🌐 Deployment
+## Deployment
 
 ### Frontend (Vercel)
 
@@ -101,27 +101,7 @@ A modern, full-stack quiz application built with React, Spring Boot, and Google'
 
 See [DEPLOYMENT-GUIDE.md](DEPLOYMENT-GUIDE.md) for detailed instructions.
 
-## 📁 Project Structure
-
-```
-AI_Quiz_Application/
-├── src/                    # React frontend
-│   ├── components/         # React components
-│   ├── assets/            # Static assets
-│   └── index.js           # Entry point
-├── src-java/              # Spring Boot backend
-│   └── main/java/com/quizapp/
-│       ├── controller/    # REST controllers
-│       ├── models/        # JPA entities
-│       ├── services/      # Business logic
-│       └── filters/       # Security filters
-├── public/                # Public assets
-├── pom.xml               # Maven configuration
-├── package.json          # Node.js dependencies
-└── README.md             # This file
-```
-
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -140,7 +120,7 @@ AI_Quiz_Application/
 - **Development**: H2 in-memory database
 - **Production**: Configure via environment variables
 
-## 🎯 API Endpoints
+## API Endpoints
 
 ### Authentication
 
@@ -160,7 +140,7 @@ AI_Quiz_Application/
 - `GET /user/attempted` - Get user's quiz attempts
 - `GET /user/quizzes` - Get user's created quizzes
 
-## 🤖 AI Quiz Generation
+## AI Quiz Generation
 
 The application uses Google's Gemini AI to generate quizzes based on:
 
@@ -169,7 +149,7 @@ The application uses Google's Gemini AI to generate quizzes based on:
 - **Subject**: Any academic subject
 - **Topic**: Specific topic within the subject
 
-## 🔒 Security Features
+## Security Features
 
 - JWT-based authentication
 - Password encryption with BCrypt
@@ -177,7 +157,7 @@ The application uses Google's Gemini AI to generate quizzes based on:
 - Input validation
 - SQL injection prevention
 
-## 🧪 Testing
+## Testing
 
 ### Frontend
 
@@ -191,13 +171,13 @@ npm test
 ./mvnw.cmd test
 ```
 
-## 📊 Performance
+## Performance
 
 - **Frontend**: Optimized with React 18 features
 - **Backend**: Spring Boot with optimized JPA queries
 - **Database**: Efficient indexing and query optimization
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -205,14 +185,14 @@ npm test
 4. Add tests if applicable
 5. Submit a pull request
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Google Gemini AI for quiz generation
 - Spring Boot team for the excellent framework
 - React team for the amazing frontend library
 - Bootstrap team for the UI components
 
-## 📞 Support
+## Support
 
 - **Issues**: [GitHub Issues](https://github.com/Kamal-Sin/AI_Quiz_Application/issues)
 - **Documentation**: [DEPLOYMENT-GUIDE.md](DEPLOYMENT-GUIDE.md)
