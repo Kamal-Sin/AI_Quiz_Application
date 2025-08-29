@@ -38,7 +38,8 @@ public class IdFilter extends OncePerRequestFilter {
         String url = request.getRequestURI();
 
         if (url.equals("/user/login") || url.equals("/user/register") || url.equals("/quiz/generate-ai")
-                || url.equals("/quiz/health") || url.equals("/health") || url.equals("/actuator/health") || url.equals("/")) {
+                || url.equals("/quiz/health") || url.equals("/health") || url.equals("/actuator/health")
+                || url.equals("/")) {
             filterChain.doFilter(request, response);
             return;
         }

@@ -57,3 +57,5 @@ application-dev.properties
 # MongoDB Atlas connection strings
 .env
 *.env
+.env.local
+.env.production

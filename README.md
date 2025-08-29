@@ -118,8 +118,16 @@ The application uses:
 
 ### Environment Variables Required:
 
+**Required:**
+
+- `MONGODB_URI` - Your MongoDB Atlas connection string
+- `MONGODB_DATABASE` - Database name (default: quizapp)
+
+**Optional:**
+
 - `SPRING_PROFILES_ACTIVE=prod` - Use production configuration
-- `GEMINI_API_KEY=your_api_key` - For AI quiz generation (optional)
+- `GEMINI_API_KEY=your_api_key` - For AI quiz generation
+- `PORT=8080` - Server port (set by deployment platforms)
 
 ### Health Check Endpoint:
 
@@ -128,9 +136,33 @@ The application uses:
 
 ### Deployment Platforms:
 
-- **Railway**: Use `railway.json` configuration
-- **Render**: Use `Dockerfile` or direct deployment
-- **Vercel**: Frontend deployment only
+#### Railway Deployment:
+
+1. Connect your GitHub repository to Railway
+2. Set environment variables in Railway dashboard:
+   ```
+   MONGODB_URI=mongodb+srv://Quizzy:quizzy@cluster0.5nc0uzo.mongodb.net/quizapp?retryWrites=true&w=majority&appName=Cluster0
+   MONGODB_DATABASE=quizapp
+   SPRING_PROFILES_ACTIVE=prod
+   GEMINI_API_KEY=your_api_key (optional)
+   ```
+3. Deploy automatically from GitHub
+
+#### Heroku Deployment:
+
+1. Use `Procfile` and `system.properties`
+2. Set config vars in Heroku dashboard
+3. Deploy using Heroku CLI or GitHub integration
+
+#### Render Deployment:
+
+1. Use `Dockerfile` or direct deployment
+2. Set environment variables in Render dashboard
+3. Deploy from GitHub
+
+#### Vercel Deployment:
+
+- Frontend deployment only
 
 See `DEPLOYMENT-GUIDE.md` for detailed instructions.
 
