@@ -39,7 +39,7 @@ public class IdFilter extends OncePerRequestFilter {
 
         if (url.equals("/user/login") || url.equals("/user/register") || url.equals("/quiz/generate-ai")
                 || url.equals("/quiz/health") || url.equals("/health") || url.equals("/actuator/health")
-                || url.equals("/")) {
+                || url.equals("/") || url.startsWith("/actuator")) {
             filterChain.doFilter(request, response);
             return;
         }
