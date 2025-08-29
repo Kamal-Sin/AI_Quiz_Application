@@ -1,3 +1,4 @@
+com\quizapp\controller\HealthController.class
 com\quizapp\models\mongo\QuestionMongo.class
 com\quizapp\repository\mongo\QuizMongoRepository.class
 com\quizapp\configurations\WebConfig.class

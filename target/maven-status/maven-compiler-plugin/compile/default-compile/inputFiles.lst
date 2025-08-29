@@ -21,5 +21,6 @@ C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\models\mon
 C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\controller\QuizController.java
 C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\models\mongo\UserMongo.java
 C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\services\mongo\AttemptedQuizMongoService.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\controller\HealthController.java
 C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\dto\QuizSubmissionDto.java
 C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\models\mongo\QuizMongo.java
