@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.quizapp.models.User;
+import com.quizapp.models.mongo.UserMongo;
 import com.quizapp.models.mongo.UserMongo;
 import com.quizapp.services.mongo.UserMongoService;
 import com.quizapp.services.mongo.QuizMongoService;
@@ -39,10 +39,8 @@ public class UserController {
     private AttemptedQuizMongoService attemptedQuizMongoService;
 
     @PostMapping("register")
-    public ResponseEntity<?> registerUser(@RequestBody User user) {
-        UserMongo userMongo = new UserMongo(user.getEmail(), user.getPassword(), user.getFirstName(),
-                user.getLastName());
-        return userMongoService.registerUser(userMongo);
+    public ResponseEntity<?> registerUser(@RequestBody UserMongo user) {
+        return userMongoService.registerUser(user);
     }
 
     @PostMapping("login")

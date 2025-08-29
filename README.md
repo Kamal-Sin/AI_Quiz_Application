@@ -129,7 +129,6 @@ The application uses:
 ### Deployment Platforms:
 
 - **Railway**: Use `railway.json` configuration
-- **Heroku**: Use `Procfile` and `system.properties`
 - **Render**: Use `Dockerfile` or direct deployment
 - **Vercel**: Frontend deployment only
 

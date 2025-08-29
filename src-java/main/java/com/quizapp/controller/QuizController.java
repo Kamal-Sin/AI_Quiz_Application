@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.quizapp.dto.QuizCreationDto;
 import com.quizapp.dto.QuizSubmissionDto;
 import com.quizapp.dto.AiQuizRequest;
-import com.quizapp.models.Quiz;
-import com.quizapp.models.Question;
+import com.quizapp.models.mongo.QuizMongo;
+import com.quizapp.models.mongo.QuestionMongo;
 import com.quizapp.models.mongo.QuizMongo;
 import com.quizapp.models.mongo.QuestionMongo;
 import com.quizapp.services.AiQuizService;
@@ -52,23 +52,16 @@ public class QuizController {
 	public ResponseEntity<?> createQuiz(@RequestAttribute("userId") String userId,
 			@RequestBody QuizCreationDto quizDto) {
 		try {
-			// Convert Quiz to QuizMongo
-			Quiz quiz = quizDto.getQuiz();
-			QuizMongo quizMongo = new QuizMongo(
-					quiz.getQuizId(), quiz.getDate(), quiz.getDifficulty(),
-					quiz.getSubject(), quiz.getTitle(), quiz.getDuration(),
-					quiz.getTotalQuestions(), quiz.getTotalPoints());
+			// Get QuizMongo directly from DTO
+			QuizMongo quizMongo = quizDto.getQuiz();
 			quizMongo.setUserId(userId);
 
 			String quizId = quizMongoService.createQuiz(quizMongo);
 			if (quizId == null || quizId.trim().isEmpty())
 				return ResponseEntity.internalServerError().build();
 
-			// Convert Questions to QuestionMongo
-			List<QuestionMongo> questionMongos = quizDto.getQuestions().stream()
-					.map(q -> new QuestionMongo(q.getQuestionNo(), q.getQuestion(), q.getOption1(),
-							q.getOption2(), q.getOption3(), q.getOption4(), q.getCorrect(), q.getPoints()))
-					.collect(Collectors.toList());
+			// Get QuestionMongo list directly from DTO
+			List<QuestionMongo> questionMongos = quizDto.getQuestions();
 
 			if (questionMongoService.addQuestions(questionMongos, quizId))
 				return ResponseEntity.status(HttpStatus.CREATED).body(quizId);
@@ -107,7 +100,7 @@ public class QuizController {
 	@PostMapping("generate-ai")
 	public ResponseEntity<?> generateAiQuiz(@RequestBody AiQuizRequest request) {
 		try {
-			List<Question> questions = aiQuizService.generateQuiz(request);
+			List<QuestionMongo> questions = aiQuizService.generateQuiz(request);
 			return ResponseEntity.ok(questions);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

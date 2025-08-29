@@ -3,8 +3,8 @@ package com.quizapp.dto;
 import java.util.List;
 import java.util.Map;
 
-import com.quizapp.models.Question;
-import com.quizapp.models.Quiz;
+import com.quizapp.models.mongo.QuestionMongo;
+import com.quizapp.models.mongo.QuizMongo;
 
 public class QuizSubmissionDto {
 	private String quizId;
