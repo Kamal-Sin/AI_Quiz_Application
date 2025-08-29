@@ -4,6 +4,8 @@ com\quizapp\QuizAppApplication.class
 com\quizapp\repository\UserRepository.class
 com\quizapp\services\UserService.class
 com\quizapp\services\QuestionService.class
+com\quizapp\services\AiQuizService.class
+com\quizapp\configurations\SecurityConfig.class
 com\quizapp\services\QuizService.class
 com\quizapp\controller\QuizController.class
 com\quizapp\configurations\FilterConfig.class
@@ -21,3 +23,4 @@ com\quizapp\models\Question.class
 com\quizapp\models\User.class
 com\quizapp\dto\AttemptedQuizDto.class
 com\quizapp\dto\QuizSubmissionDto.class
+com\quizapp\dto\AiQuizRequest.class

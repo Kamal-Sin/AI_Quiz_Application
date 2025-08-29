@@ -1,5 +1,6 @@
 package com.quizapp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import java.util.Map;
 
@@ -19,11 +20,15 @@ import com.quizapp.dto.QuizSubmissionDto;
 import com.quizapp.dto.AiQuizRequest;
 import com.quizapp.models.Quiz;
 import com.quizapp.models.Question;
-import com.quizapp.services.QuestionService;
-import com.quizapp.services.QuizService;
+import com.quizapp.models.mongo.QuizMongo;
+import com.quizapp.models.mongo.QuestionMongo;
 import com.quizapp.services.AiQuizService;
+import com.quizapp.services.mongo.QuizMongoService;
+import com.quizapp.services.mongo.QuestionMongoService;
+import com.quizapp.services.mongo.AttemptedQuizMongoService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = { "http://localhost:3000", "https://ai-quiz-application-ten.vercel.app", "https://*.vercel.app",
@@ -31,52 +36,72 @@ import java.util.List;
 @RequestMapping("quiz")
 public class QuizController {
 
-	private QuizService quizService;
-	private QuestionService questionService;
-	private AiQuizService aiQuizService;
+	@Autowired
+	private QuizMongoService quizMongoService;
 
-	public QuizController(QuizService quizService, QuestionService questionService, AiQuizService aiQuizService) {
-		this.quizService = quizService;
-		this.questionService = questionService;
-		this.aiQuizService = aiQuizService;
-	}
+	@Autowired
+	private QuestionMongoService questionMongoService;
+
+	@Autowired
+	private AttemptedQuizMongoService attemptedQuizMongoService;
+
+	@Autowired
+	private AiQuizService aiQuizService;
 
 	@PostMapping("create")
 	public ResponseEntity<?> createQuiz(@RequestAttribute("userId") String userId,
 			@RequestBody QuizCreationDto quizDto) {
-		Quiz quiz = quizDto.getQuiz();
-		quiz.setUserId(userId);
-		String quizId = quizService.createQuiz(quiz, quizDto.getQuestions());
-		if (quizId == null || quizId.trim().isEmpty())
-			return ResponseEntity.internalServerError().build();
+		try {
+			// Convert Quiz to QuizMongo
+			Quiz quiz = quizDto.getQuiz();
+			QuizMongo quizMongo = new QuizMongo(
+					quiz.getQuizId(), quiz.getDate(), quiz.getDifficulty(),
+					quiz.getSubject(), quiz.getTitle(), quiz.getDuration(),
+					quiz.getTotalQuestions(), quiz.getTotalPoints());
+			quizMongo.setUserId(userId);
 
-		if (questionService.addQuestions(quizDto.getQuestions(), quizId))
-			return ResponseEntity.status(HttpStatus.CREATED).body(quizId);
-		// Quiz creation request received
-		return ResponseEntity.notFound().build();
+			String quizId = quizMongoService.createQuiz(quizMongo);
+			if (quizId == null || quizId.trim().isEmpty())
+				return ResponseEntity.internalServerError().build();
+
+			// Convert Questions to QuestionMongo
+			List<QuestionMongo> questionMongos = quizDto.getQuestions().stream()
+					.map(q -> new QuestionMongo(q.getQuestionNo(), q.getQuestion(), q.getOption1(),
+							q.getOption2(), q.getOption3(), q.getOption4(), q.getCorrect(), q.getPoints()))
+					.collect(Collectors.toList());
+
+			if (questionMongoService.addQuestions(questionMongos, quizId))
+				return ResponseEntity.status(HttpStatus.CREATED).body(quizId);
+
+			return ResponseEntity.notFound().build();
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Failed to create quiz: " + e.getMessage());
+		}
 	}
 
 	@GetMapping("{quizId}")
 	public ResponseEntity<?> getQuiz(@PathVariable("quizId") String id) {
-		return questionService.getQuiz(id);
+		return questionMongoService.getQuiz(id);
 	}
 
 	@GetMapping("attempt/{quizId}")
 	public ResponseEntity<?> getQuizInstructions(@PathVariable String quizId, @RequestAttribute String userId) {
-		if (quizService.checkAttempted(userId, quizId))
+		if (attemptedQuizMongoService.checkAttempted(userId, quizId))
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
-		return quizService.getQuizInstructions(quizId);
+		return quizMongoService.getQuizInstructions(quizId);
 	}
 
 	@PostMapping("start")
 	public ResponseEntity<?> getQuestions(@RequestBody Map<String, String> quizId) {
-		return questionService.getQuiz(quizId.get("quizId"));
+		return questionMongoService.getQuiz(quizId.get("quizId"));
 	}
 
 	@PostMapping("submit")
 	public ResponseEntity<?> submitQuiz(@RequestBody QuizSubmissionDto answers, @RequestAttribute String userId) {
 		answers.getAnswers().remove("0");
-		return quizService.submitQuiz(answers.getQuizId(), userId, answers.getDate(), answers.getAnswers());
+		return attemptedQuizMongoService.submitQuiz(answers.getQuizId(), userId, answers.getDate(),
+				answers.getAnswers());
 	}
 
 	@PostMapping("generate-ai")

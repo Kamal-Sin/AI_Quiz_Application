@@ -1,6 +1,0 @@
-This directory should contain the following image files:
-
-1. "menu button.jpg" - Menu button image used in Header.jsx
-2. "online-exam-or-test.webp" - Home page image used in HomeBody.jsx
-
-You can add any appropriate images with these exact filenames, or update the import statements in the React components to use different image files.

@@ -1,25 +1,25 @@
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\controller\QuizController.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\services\AiQuizService.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\repository\UserRepository.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\models\Question.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\models\Quiz.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\repository\QuestionRepository.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\configurations\FilterConfig.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\dto\AiQuizRequest.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\services\QuizService.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\repository\QuizRepository.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\keys\AttemptedQuizKey.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\models\AttemptedQuiz.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\services\UserService.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\dto\QuizCreationDto.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\repository\AttemptedQuizRepository.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\services\QuestionService.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\configurations\WebConfig.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\QuizAppApplication.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\keys\QuestionCompositeKey.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\configurations\SecurityConfig.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\controller\UserController.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\dto\AttemptedQuizDto.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\models\User.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\dto\QuizSubmissionDto.java
-C:\Users\kamal\Desktop\Projects\Project Final Year\src-java\main\java\com\quizapp\filters\IdFilter.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\QuizAppApplication.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\repository\QuestionRepository.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\services\UserService.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\dto\QuizCreationDto.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\models\Question.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\models\AttemptedQuiz.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\models\User.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\configurations\WebConfig.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\services\AiQuizService.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\dto\AttemptedQuizDto.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\repository\UserRepository.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\keys\AttemptedQuizKey.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\controller\UserController.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\services\QuizService.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\keys\QuestionCompositeKey.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\dto\AiQuizRequest.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\configurations\SecurityConfig.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\repository\AttemptedQuizRepository.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\services\QuestionService.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\configurations\FilterConfig.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\filters\IdFilter.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\controller\QuizController.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\models\Quiz.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\repository\QuizRepository.java
+C:\Users\kamal\Desktop\Projects\Quizzy\src-java\main\java\com\quizapp\dto\QuizSubmissionDto.java

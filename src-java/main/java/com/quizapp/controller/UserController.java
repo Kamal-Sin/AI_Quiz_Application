@@ -1,8 +1,8 @@
 package com.quizapp.controller;
 
-import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.quizapp.models.Question;
-import com.quizapp.models.Quiz;
 import com.quizapp.models.User;
-import com.quizapp.services.UserService;
+import com.quizapp.models.mongo.UserMongo;
+import com.quizapp.services.mongo.UserMongoService;
+import com.quizapp.services.mongo.QuizMongoService;
+import com.quizapp.services.mongo.QuestionMongoService;
+import com.quizapp.services.mongo.AttemptedQuizMongoService;
 
 @RestController
 @CrossOrigin(origins = { "http://localhost:3000", "https://ai-quiz-application-ten.vercel.app", "https://*.vercel.app",
@@ -25,45 +26,53 @@ import com.quizapp.services.UserService;
 @RequestMapping("user")
 public class UserController {
 
-    private UserService userService;
+    @Autowired
+    private UserMongoService userMongoService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    @Autowired
+    private QuizMongoService quizMongoService;
+
+    @Autowired
+    private QuestionMongoService questionMongoService;
+
+    @Autowired
+    private AttemptedQuizMongoService attemptedQuizMongoService;
 
     @PostMapping("register")
     public ResponseEntity<?> registerUser(@RequestBody User user) {
-        return userService.registerUser(user);
+        UserMongo userMongo = new UserMongo(user.getEmail(), user.getPassword(), user.getFirstName(),
+                user.getLastName());
+        return userMongoService.registerUser(userMongo);
     }
 
     @PostMapping("login")
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> user) {
-        return userService.loginUser(user);
+        return userMongoService.loginUser(user);
     }
 
     @GetMapping("getUser")
     public ResponseEntity<?> getUser(@RequestAttribute String userId) {
-        return userService.getUsers(userId);
+        return userMongoService.getUsers(userId);
     }
 
     @GetMapping("creations")
     public ResponseEntity<?> allQuizzes(@RequestAttribute String userId) {
-        return userService.allQuizzes(userId);
+        return quizMongoService.allQuizzes(userId);
     }
 
     @GetMapping("creations/{quizId}")
-    public ResponseEntity<Quiz> specificQuiz(@PathVariable String quizId, @RequestAttribute String userId) {
-        return userService.getQuiz(quizId, userId);
+    public ResponseEntity<?> specificQuiz(@PathVariable String quizId, @RequestAttribute String userId) {
+        return quizMongoService.getQuiz(quizId, userId);
     }
 
     @GetMapping("creations/{quizId}/questions")
     public ResponseEntity<?> getQuestions(@PathVariable("quizId") String quizId,
             @RequestAttribute("userId") String userId) {
-        return userService.getQuestions(quizId, userId);
+        return questionMongoService.getQuestions(quizId, userId);
     }
 
     @GetMapping("attempted")
     public ResponseEntity<?> getAttempted(@RequestAttribute String userId) {
-        return userService.getAttempted(userId);
+        return attemptedQuizMongoService.getAttempted(userId);
     }
 }

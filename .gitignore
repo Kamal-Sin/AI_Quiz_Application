@@ -16,11 +16,11 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# Database files
-*.db
-*.mv.db
-*.trace.db
-quizdb.*
+# Database files (no longer needed with MongoDB Atlas)
+# *.db
+# *.mv.db
+# *.trace.db
+# quizdb.*
 
 # IDE files
 .vscode/
@@ -53,3 +53,7 @@ temp/
 # API Keys and Secrets
 application-prod.properties
 application-dev.properties
+
+# MongoDB Atlas connection strings
+.env
+*.env
