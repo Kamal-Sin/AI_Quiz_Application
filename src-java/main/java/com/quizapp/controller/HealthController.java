@@ -12,10 +12,17 @@ public class HealthController {
 
     @GetMapping("/health")
     public ResponseEntity<Map<String, Object>> health() {
+        System.out.println("Health check endpoint called at: " + System.currentTimeMillis());
+
         Map<String, Object> healthStatus = new HashMap<>();
         healthStatus.put("status", "UP");
         healthStatus.put("message", "Quiz App Backend is running!");
         healthStatus.put("timestamp", System.currentTimeMillis());
+        healthStatus.put("version", "1.0.0");
+        healthStatus.put("environment",
+                System.getenv("SPRING_PROFILES_ACTIVE") != null ? System.getenv("SPRING_PROFILES_ACTIVE") : "dev");
+
+        System.out.println("Health check response: " + healthStatus);
         return ResponseEntity.ok(healthStatus);
     }
 
