@@ -141,7 +141,7 @@ The application uses:
 1. Connect your GitHub repository to Railway
 2. Set environment variables in Railway dashboard:
    ```
-   MONGODB_URI=mongodb+srv://Quizzy:quizzy@cluster0.5nc0uzo.mongodb.net/quizapp?retryWrites=true&w=majority&appName=Cluster0
+   MONGODB_URI=your_mongodb_atlas_connection_string
    MONGODB_DATABASE=quizapp
    SPRING_PROFILES_ACTIVE=prod
    GEMINI_API_KEY=your_api_key (optional)
