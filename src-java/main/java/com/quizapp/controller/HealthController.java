@@ -22,6 +22,18 @@ public class HealthController {
         healthStatus.put("environment",
                 System.getenv("SPRING_PROFILES_ACTIVE") != null ? System.getenv("SPRING_PROFILES_ACTIVE") : "dev");
 
+        // Add MongoDB connection status if available
+        try {
+            String mongoUri = System.getenv("MONGODB_URI");
+            if (mongoUri != null && !mongoUri.isEmpty()) {
+                healthStatus.put("mongodb", "configured");
+            } else {
+                healthStatus.put("mongodb", "not_configured");
+            }
+        } catch (Exception e) {
+            healthStatus.put("mongodb", "error");
+        }
+
         System.out.println("Health check response: " + healthStatus);
         return ResponseEntity.ok(healthStatus);
     }

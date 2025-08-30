@@ -4,11 +4,9 @@ echo "=========================================="
 echo "Starting Quiz App Backend..."
 echo "=========================================="
 
-# Check if MongoDB URI is set
+# Check if MongoDB URI is set (optional for testing)
 if [ -z "$MONGODB_URI" ]; then
-    echo "WARNING: MONGODB_URI environment variable is not set!"
-    echo "Application may fail to start properly."
-    echo "Please set MONGODB_URI in your Railway environment variables."
+    echo "INFO: MONGODB_URI environment variable is not set, using hardcoded URL for testing"
 fi
 
 # Check if database name is set
@@ -28,6 +26,12 @@ if [ ! -f "target/quiz-app-1.0-SNAPSHOT.jar" ]; then
     ./mvnw clean package -DskipTests
 fi
 
-# Start the application
+# Verify JAR file exists after build
+if [ ! -f "target/quiz-app-1.0-SNAPSHOT.jar" ]; then
+    echo "ERROR: Failed to build JAR file"
+    exit 1
+fi
+
+# Start the application with error handling
 echo "Starting Java application..."
 java -jar target/quiz-app-1.0-SNAPSHOT.jar
