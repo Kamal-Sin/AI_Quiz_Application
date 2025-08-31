@@ -36,6 +36,7 @@ public class HealthController {
             }
         } catch (Exception e) {
             healthStatus.put("mongodb", "error");
+            healthStatus.put("mongodb_error", e.getMessage());
         }
 
         // System information

@@ -52,4 +52,8 @@ echo "=========================================="
 echo "Starting Java application..."
 echo "=========================================="
 
-exec java -jar target/quiz-app-1.0-SNAPSHOT.jar --spring.profiles.active=prod
+# Set JVM options for better performance and error handling
+export JAVA_OPTS="-Xmx512m -Xms256m -XX:+UseG1GC -XX:+UseContainerSupport"
+
+# Start the application with error handling
+exec java $JAVA_OPTS -jar target/quiz-app-1.0-SNAPSHOT.jar --spring.profiles.active=prod
