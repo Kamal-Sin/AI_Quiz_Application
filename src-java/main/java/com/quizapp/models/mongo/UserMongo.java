@@ -75,7 +75,7 @@ public class UserMongo {
 
     @Override
     public String toString() {
-        return "UserMongo [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
+        return "UserMongo [id=" + id + ", email=" + email + ", firstName=" + firstName
                 + ", lastName=" + lastName + "]";
     }
 }

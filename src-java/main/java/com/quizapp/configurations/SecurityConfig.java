@@ -17,7 +17,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/register", "/user/login", "/h2-console/**").permitAll()
+                .antMatchers("/health", "/actuator/health", "/", "/user/register", "/user/login", "/h2-console/**")
+                .permitAll()
                 .anyRequest().permitAll() // Allow all requests, let IdFilter handle authentication
                 .and()
                 .headers().frameOptions().disable(); // For H2 console

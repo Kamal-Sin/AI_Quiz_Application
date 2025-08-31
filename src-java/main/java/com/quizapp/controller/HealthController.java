@@ -12,8 +12,6 @@ public class HealthController {
 
     @GetMapping("/health")
     public ResponseEntity<Map<String, Object>> health() {
-        System.out.println("Health check endpoint called at: " + System.currentTimeMillis());
-
         Map<String, Object> healthStatus = new HashMap<>();
         healthStatus.put("status", "UP");
         healthStatus.put("message", "Quiz App Backend is running!");
@@ -34,7 +32,6 @@ public class HealthController {
             healthStatus.put("mongodb", "error");
         }
 
-        System.out.println("Health check response: " + healthStatus);
         return ResponseEntity.ok(healthStatus);
     }
 

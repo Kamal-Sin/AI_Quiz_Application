@@ -69,7 +69,7 @@ public class QuizController {
 			return ResponseEntity.notFound().build();
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body("Failed to create quiz: " + e.getMessage());
+					.body("Failed to create quiz");
 		}
 	}
 
@@ -104,7 +104,7 @@ public class QuizController {
 			return ResponseEntity.ok(questions);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body("Failed to generate quiz: " + e.getMessage());
+					.body("Failed to generate quiz");
 		}
 	}
 

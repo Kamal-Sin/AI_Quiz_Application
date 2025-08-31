@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -18,12 +19,17 @@ public class UserMongoService {
     @Autowired
     private UserMongoRepository userMongoRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public ResponseEntity<?> registerUser(UserMongo user) {
         try {
             if (userMongoRepository.existsByEmail(user.getEmail())) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already exists");
             }
 
+            // Encode password before saving
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             UserMongo savedUser = userMongoRepository.save(user);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
         } catch (Exception e) {
@@ -40,7 +46,7 @@ public class UserMongoService {
             }
 
             UserMongo user = userOpt.get();
-            if (!login.get("password").equals(user.getPassword())) {
+            if (!passwordEncoder.matches(login.get("password"), user.getPassword())) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
 
