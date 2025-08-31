@@ -15,7 +15,7 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:3000", "https://ai-quiz-application-ten.vercel.app",
-                                "https://*.vercel.app", "https://*.railway.app") // Allow localhost and deployment URLs
+                                "https://*.vercel.app", "https://*.render.com") // Allow localhost and deployment URLs
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
