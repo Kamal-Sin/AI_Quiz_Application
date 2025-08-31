@@ -1,7 +1,7 @@
 package com.quizapp.services;
 
 import com.quizapp.dto.AiQuizRequest;
-import com.quizapp.models.mongo.QuestionMongo;
+import com.quizapp.models.Question;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -25,7 +25,7 @@ public class AiQuizService {
     private final RestTemplate restTemplate = new RestTemplate();
     private static final String GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent";
 
-    	public List<QuestionMongo> generateQuiz(AiQuizRequest request) {
+    public List<Question> generateQuiz(AiQuizRequest request) {
         try {
             if (geminiApiKey == null || geminiApiKey.trim().isEmpty()) {
                 throw new RuntimeException("Gemini API key not configured");
@@ -107,8 +107,8 @@ public class AiQuizService {
                 request.getGrade(), request.getDifficulty());
     }
 
-    private List<QuestionMongo> parseQuizResponse(String content) {
-        List<QuestionMongo> questions = new ArrayList<>();
+    private List<Question> parseQuizResponse(String content) {
+        List<Question> questions = new ArrayList<>();
 
         // Split content by question blocks
         String[] questionBlocks = content.split("Q\\d+\\.");
@@ -119,7 +119,7 @@ public class AiQuizService {
                 continue;
 
             try {
-                QuestionMongo question = parseQuestionBlock(block, i);
+                Question question = parseQuestionBlock(block, i);
                 questions.add(question);
             } catch (Exception e) {
                 // Log error but continue with other questions
@@ -130,7 +130,7 @@ public class AiQuizService {
         return questions;
     }
 
-    private QuestionMongo parseQuestionBlock(String block, int questionNumber) {
+    private Question parseQuestionBlock(String block, int questionNumber) {
         // Extract question text (everything before the first option)
         String[] lines = block.split("\n");
         String questionText = lines[0].trim();
@@ -161,7 +161,16 @@ public class AiQuizService {
             }
         }
 
-        QuestionMongo question = new QuestionMongo(String.valueOf(questionNumber), questionText, optionA, optionB, optionC, optionD, correctAnswer, "1");
+        Question question = new Question();
+        question.setQuestionNo(String.valueOf(questionNumber));
+        question.setQuestion(questionText);
+        question.setOption1(optionA);
+        question.setOption2(optionB);
+        question.setOption3(optionC);
+        question.setOption4(optionD);
+        question.setCorrect(correctAnswer);
+        question.setPoints("1"); // Always set to 1 point for AI-generated quizzes
+
         return question;
     }
 }

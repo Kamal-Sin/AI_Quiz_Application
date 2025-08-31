@@ -4,15 +4,15 @@ services:
     env: java
     plan: free
     buildCommand: ./mvnw clean package -DskipTests
-    startCommand: java -jar target/quiz-app-1.0-SNAPSHOT.jar --spring.profiles.active=render
-    healthCheckPath: /health
+    startCommand: java -jar target/quiz-app-1.0-SNAPSHOT.jar --spring.profiles.active=prod
+    healthCheckPath: /quiz/health
     envVars:
       - key: MONGODB_URI
-        value: mongodb+srv://Quizzy:quizzy@cluster0.5nc0uzo.mongodb.net/quizapp?retryWrites=true&w=majority&appName=Cluster0
+        value: mongodb+srv://quizzy:quizzy@cluster0.5nc0uzo.mongodb.net/quizapp?retryWrites=true&w=majority&appName=Cluster0
       - key: MONGODB_DATABASE
         value: quizapp
       - key: SPRING_PROFILES_ACTIVE
-        value: render
+        value: prod
       - key: PORT
         value: 8080
       - key: GEMINI_API_KEY

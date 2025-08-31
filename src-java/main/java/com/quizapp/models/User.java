@@ -1,38 +1,28 @@
-package com.quizapp.models.mongo;
+package com.quizapp.models;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.index.Indexed;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Document(collection = "users")
-public class UserMongo {
+@Entity
+@Table(name = "users")
+public class User {
 
     @Id
-    private String id;
+    String id;
+    String email;
+    String password;
+    String firstName;
+    String lastName;
 
-    @Indexed(unique = true)
-    private String email;
-
-    private String password;
-    private String firstName;
-    private String lastName;
-
-    public UserMongo() {
+    public User() {
     }
 
-    public UserMongo(String email, String password) {
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public UserMongo(String email, String password, String firstName, String lastName) {
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    // Getters and Setters
     public String getId() {
         return id;
     }
@@ -75,7 +65,8 @@ public class UserMongo {
 
     @Override
     public String toString() {
-        return "UserMongo [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
+        return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
                 + ", lastName=" + lastName + "]";
     }
+
 }

@@ -11,5 +11,5 @@ public interface QuestionMongoRepository extends MongoRepository<QuestionMongo, 
 
     List<QuestionMongo> findByQuizId(String quizId);
 
-    void deleteByQuizId(String quizId);
+    List<QuestionMongo> findByQuizIdOrderByQuestionNo(String quizId);
 }

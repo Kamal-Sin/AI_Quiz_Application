@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @Configuration
+@Profile("prod")
 @EnableMongoRepositories(basePackages = "com.quizapp.repository.mongo")
 public class MongoConfig extends AbstractMongoClientConfiguration {
 

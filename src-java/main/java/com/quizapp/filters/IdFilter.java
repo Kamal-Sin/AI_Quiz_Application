@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.quizapp.services.mongo.UserMongoService;
+import com.quizapp.services.UserService;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class IdFilter extends OncePerRequestFilter {
 
     @Autowired
-    UserMongoService userMongoService;
+    UserService userService;
 
     @SuppressWarnings("null")
     @Override
@@ -38,8 +38,7 @@ public class IdFilter extends OncePerRequestFilter {
         String url = request.getRequestURI();
 
         if (url.equals("/user/login") || url.equals("/user/register") || url.equals("/quiz/generate-ai")
-                || url.equals("/quiz/health") || url.equals("/health") || url.equals("/actuator/health")
-                || url.equals("/") || url.startsWith("/actuator")) {
+                || url.equals("/quiz/health")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -51,7 +50,7 @@ public class IdFilter extends OncePerRequestFilter {
         }
         byte[] dUid = Base64.getDecoder().decode(encodedUid);
         String uid = new String(dUid);
-        if (userMongoService.checkUser(uid) == false) {
+        if (userService.checkUser(uid) == false) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }

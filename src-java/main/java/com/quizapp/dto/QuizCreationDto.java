@@ -2,26 +2,26 @@ package com.quizapp.dto;
 
 import java.util.List;
 
-import com.quizapp.models.mongo.QuestionMongo;
-import com.quizapp.models.mongo.QuizMongo;
+import com.quizapp.models.Question;
+import com.quizapp.models.Quiz;
 
 public class QuizCreationDto {
-	private QuizMongo quiz;
-	private List<QuestionMongo> questions;
+	private Quiz quiz;
+	private List<Question> questions;
 
-	public QuizMongo getQuiz() {
+	public Quiz getQuiz() {
 		return quiz;
 	}
 
-	public void setQuiz(QuizMongo quiz) {
+	public void setQuiz(Quiz quiz) {
 		this.quiz = quiz;
 	}
 
-	public List<QuestionMongo> getQuestions() {
+	public List<Question> getQuestions() {
 		return questions;
 	}
 
-	public void setQuestions(List<QuestionMongo> questions) {
+	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
 

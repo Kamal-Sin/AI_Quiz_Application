@@ -35,7 +35,6 @@ Quizzy/
 - Node.js (v14 or higher)
 - Java JDK 17 or higher
 - Maven (included via mvnw)
-- MongoDB Atlas account (free tier)
 
 ## Quick Start
 
@@ -49,24 +48,17 @@ fix-java-home.bat
 
 ### 2. Start the Application
 
-**Development Mode:**
+Run the startup script:
 
 ```bash
 start-app.bat
 ```
 
-**Production Mode:**
-
-```bash
-start-prod.bat
-```
-
-This will start:
+This will start both:
 
 - **Frontend**: http://localhost:3000
 - **Backend**: http://localhost:8080
-- **Database**: MongoDB Atlas (cloud)
-- **Health Check**: http://localhost:8080/actuator/health
+- **H2 Database Console**: http://localhost:8080/h2-console
 
 ### 3. Manual Start (Alternative)
 
@@ -79,6 +71,21 @@ npm start
 **Backend:**
 
 ```bash
+mvnw.cmd spring-boot:run
+```
+
+### 4. Production Mode (MongoDB Atlas)
+
+**Backend with MongoDB:**
+
+```bash
+start-prod.bat
+```
+
+Or manually:
+
+```bash
+set SPRING_PROFILES_ACTIVE=prod
 mvnw.cmd spring-boot:run
 ```
 
@@ -103,69 +110,22 @@ mvnw.cmd spring-boot:run
 
 - Spring Boot 2.7
 - Spring Security
-- Spring Data MongoDB
-- MongoDB Atlas (cloud database)
+- Spring Data JPA
+- H2 Database (development)
+- MongoDB Atlas (production)
 
 ## Development
 
 The application uses:
 
-- **MongoDB Atlas** for all environments (cloud database)
+- **H2 Database** for development (in-memory)
 - **Maven Wrapper** for dependency management
 - **React Scripts** for frontend development
 
 ## Deployment
 
-### Environment Variables Required:
-
-**Required:**
-
-- `MONGODB_URI` - Your MongoDB Atlas connection string
-- `MONGODB_DATABASE` - Database name (default: quizapp)
-
-**Optional:**
-
-- `SPRING_PROFILES_ACTIVE=prod` - Use production configuration
-- `GEMINI_API_KEY=your_api_key` - For AI quiz generation
-- `PORT=8080` - Server port (set by deployment platforms)
-
-### Health Check Endpoint:
-
-- `GET /actuator/health` - Application health status
-- `GET /quiz/health` - Custom health check
-
-### Deployment Platforms:
-
-#### Railway Deployment:
-
-1. Connect your GitHub repository to Railway
-2. Set environment variables in Railway dashboard:
-   ```
-   MONGODB_URI=your_mongodb_atlas_connection_string
-   MONGODB_DATABASE=quizapp
-   SPRING_PROFILES_ACTIVE=prod
-   GEMINI_API_KEY=your_api_key (optional)
-   ```
-3. Deploy automatically from GitHub
-
-#### Heroku Deployment:
-
-1. Use `Procfile` and `system.properties`
-2. Set config vars in Heroku dashboard
-3. Deploy using Heroku CLI or GitHub integration
-
-#### Render Deployment:
-
-1. Use `Dockerfile` or direct deployment
-2. Set environment variables in Render dashboard
-3. Deploy from GitHub
-
-#### Vercel Deployment:
-
-- Frontend deployment only
-
-See `DEPLOYMENT-GUIDE.md` for detailed instructions.
+See `DEPLOYMENT-GUIDE.md` for deployment instructions to various platforms.
 
 ## MongoDB Atlas Setup
 
-MongoDB Atlas is configured as the default database. See `MONGODB-SETUP.md` for setup instructions if you need to change the connection string.
+For production deployment with MongoDB Atlas, see `MONGODB-SETUP.md` for detailed setup instructions.

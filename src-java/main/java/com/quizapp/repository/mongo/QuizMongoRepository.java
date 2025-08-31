@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface QuizMongoRepository extends MongoRepository<QuizMongo, String> {
 
-    List<QuizMongo> findByUserIdOrderByDateDesc(String userId);
-
     Optional<QuizMongo> findByQuizId(String quizId);
+
+    List<QuizMongo> findByUserIdOrderByDateDesc(String userId);
 }
