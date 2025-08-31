@@ -4,7 +4,7 @@ services:
     env: java
     plan: free
     buildCommand: ./mvnw clean package -DskipTests
-    startCommand: java -jar target/quiz-app-1.0-SNAPSHOT.jar --spring.profiles.active=prod
+    startCommand: java -jar target/quiz-app-1.0-SNAPSHOT.jar --spring.profiles.active=render
     healthCheckPath: /health
     envVars:
       - key: MONGODB_URI
@@ -12,7 +12,7 @@ services:
       - key: MONGODB_DATABASE
         value: quizapp
       - key: SPRING_PROFILES_ACTIVE
-        value: prod
+        value: render
       - key: PORT
         value: 8080
       - key: GEMINI_API_KEY

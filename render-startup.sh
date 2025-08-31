@@ -9,20 +9,27 @@ export SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE:-render}
 export PORT=${PORT:-8080}
 export MONGODB_DATABASE=${MONGODB_DATABASE:-quizapp}
 
-echo "Environment Configuration:"
-echo "  SPRING_PROFILES_ACTIVE: $SPRING_PROFILES_ACTIVE"
-echo "  PORT: $PORT"
-echo "  MONGODB_DATABASE: $MONGODB_DATABASE"
-
-# Check if MongoDB URI is set
+# Ensure MONGODB_URI is set
 if [ -z "$MONGODB_URI" ]; then
     echo "ERROR: MONGODB_URI environment variable is not set!"
     echo "This is required for the application to start."
     echo "Please set MONGODB_URI in your Render environment variables."
     exit 1
-else
-    echo "  MONGODB_URI: ${MONGODB_URI:0:20}..." # Show first 20 chars for security
 fi
+
+# Export all environment variables explicitly
+export MONGODB_URI="$MONGODB_URI"
+export MONGODB_DATABASE="$MONGODB_DATABASE"
+export SPRING_PROFILES_ACTIVE="$SPRING_PROFILES_ACTIVE"
+export PORT="$PORT"
+
+echo "Environment Configuration:"
+echo "  SPRING_PROFILES_ACTIVE: $SPRING_PROFILES_ACTIVE"
+echo "  PORT: $PORT"
+echo "  MONGODB_DATABASE: $MONGODB_DATABASE"
+
+# Display MongoDB URI info (first 20 chars for security)
+echo "  MONGODB_URI: ${MONGODB_URI:0:20}..." # Show first 20 chars for security
 
 # Check if JAR file exists, build if not
 if [ ! -f "target/quiz-app-1.0-SNAPSHOT.jar" ]; then
