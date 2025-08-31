@@ -4,34 +4,52 @@ echo "=========================================="
 echo "Starting Quiz App Backend..."
 echo "=========================================="
 
-# Check if MongoDB URI is set (optional for testing)
+# Set default values for environment variables
+export SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE:-prod}
+export PORT=${PORT:-8080}
+export MONGODB_DATABASE=${MONGODB_DATABASE:-quizapp}
+
+echo "Environment Configuration:"
+echo "  SPRING_PROFILES_ACTIVE: $SPRING_PROFILES_ACTIVE"
+echo "  PORT: $PORT"
+echo "  MONGODB_DATABASE: $MONGODB_DATABASE"
+
+# Check if MongoDB URI is set
 if [ -z "$MONGODB_URI" ]; then
-    echo "INFO: MONGODB_URI environment variable is not set, using hardcoded URL for testing"
+    echo "ERROR: MONGODB_URI environment variable is not set!"
+    echo "This is required for the application to start."
+    echo "Please set MONGODB_URI in your Railway environment variables."
+    exit 1
+else
+    echo "  MONGODB_URI: ${MONGODB_URI:0:20}..." # Show first 20 chars for security
 fi
 
-# Check if database name is set
-if [ -z "$MONGODB_DATABASE" ]; then
-    echo "INFO: Using default database name: quizapp"
-fi
-
-# Check if port is set
-if [ -z "$PORT" ]; then
-    echo "INFO: Using default port: 8080"
-fi
-
-# Check if JAR file exists
+# Check if JAR file exists, build if not
 if [ ! -f "target/quiz-app-1.0-SNAPSHOT.jar" ]; then
-    echo "ERROR: JAR file not found at target/quiz-app-1.0-SNAPSHOT.jar"
-    echo "Building the application..."
+    echo "JAR file not found. Building the application..."
+    ./mvnw clean package -DskipTests
+    
+    if [ ! -f "target/quiz-app-1.0-SNAPSHOT.jar" ]; then
+        echo "ERROR: Failed to build JAR file"
+        exit 1
+    fi
+    echo "Build completed successfully!"
+else
+    echo "JAR file found at target/quiz-app-1.0-SNAPSHOT.jar"
+fi
+
+# Verify JAR file size
+JAR_SIZE=$(stat -c%s "target/quiz-app-1.0-SNAPSHOT.jar" 2>/dev/null || stat -f%z "target/quiz-app-1.0-SNAPSHOT.jar" 2>/dev/null || echo "0")
+echo "JAR file size: ${JAR_SIZE} bytes"
+
+if [ "$JAR_SIZE" -lt 1000000 ]; then
+    echo "WARNING: JAR file seems too small, rebuilding..."
     ./mvnw clean package -DskipTests
 fi
 
-# Verify JAR file exists after build
-if [ ! -f "target/quiz-app-1.0-SNAPSHOT.jar" ]; then
-    echo "ERROR: Failed to build JAR file"
-    exit 1
-fi
-
-# Start the application with error handling
+# Start the application
+echo "=========================================="
 echo "Starting Java application..."
-java -jar target/quiz-app-1.0-SNAPSHOT.jar
+echo "=========================================="
+
+exec java -jar target/quiz-app-1.0-SNAPSHOT.jar --spring.profiles.active=prod
