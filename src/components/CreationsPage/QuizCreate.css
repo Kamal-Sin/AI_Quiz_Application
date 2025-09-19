@@ -1,0 +1,44 @@
+form input {
+   border: 1px solid var(--border-color);
+   border-radius: 8px;
+   padding: 10px 12px;
+   outline: none;
+   background: var(--card-bg);
+   color: var(--text-primary);
+}
+input:focus {
+   box-shadow: 0 0 5px 2px rgb(38, 194, 205);
+}
+
+.quiz {
+   display: flex;
+   flex-direction: column;
+}
+.quiz label {
+   font-size: 20px;
+   font-style: italic;
+}
+
+.quiz-creation {
+   top: 0;
+   left: 0;
+   position: fixed;
+   width: 100%;
+   height: 100%;
+   z-index: 10;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgba(10, 10, 10, 0.5);
+   backdrop-filter: blur(5px);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
+
+input[type="number"] {
+   -moz-appearance: textfield;
+}
