@@ -16,7 +16,7 @@ public class WebConfig {
             public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOriginPatterns("http://localhost:*", "https://*.vercel.app", "https://*.railway.app",
-                                "https://ai-quiz-application-ten.vercel.app")
+                                "https://ai-quiz-application-ten.vercel.app", "${FRONTEND_URL:https://ai-quiz-application-ten.vercel.app}")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("Content-Type", "pid", "Authorization")
                         .exposedHeaders("Cache-Control", "Pragma")
