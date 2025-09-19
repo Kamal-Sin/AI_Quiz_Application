@@ -4,19 +4,17 @@ FROM openjdk:17-jdk-slim
 # Set working directory
 WORKDIR /app
 
-# Copy Maven wrapper and pom.xml first (for better caching)
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
+# Install Maven
+RUN apt-get update && apt-get install -y maven && rm -rf /var/lib/apt/lists/*
 
-# Make mvnw executable
-RUN chmod +x mvnw
+# Copy pom.xml first (for better caching)
+COPY pom.xml .
 
 # Copy source code
 COPY src-java ./src-java
 
-# Build the application
-RUN ./mvnw clean package -DskipTests
+# Build the application using Maven directly
+RUN mvn clean package -DskipTests
 
 # Expose port (Render uses PORT environment variable)
 EXPOSE $PORT
