@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Component
+@Deprecated
 public class IdFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -25,15 +26,7 @@ public class IdFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
-            response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
-            response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-            response.setHeader("Access-Control-Allow-Headers",
-                    "pid, Content-Type, Accept, X-Requested-With, remember-me");
-            response.setHeader("Access-Control-Allow-Credentials", "true");
-            response.setStatus(HttpServletResponse.SC_OK);
-            return;
-        }
+        // CORS preflight is handled by Spring; no manual handling here
         String url = request.getRequestURI();
 
         if (url.equals("/user/login") || url.equals("/user/register") || url.equals("/quiz/generate-ai")

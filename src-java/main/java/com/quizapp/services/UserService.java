@@ -20,6 +20,7 @@ import com.quizapp.models.User;
 import com.quizapp.repository.AttemptedQuizRepository;
 import com.quizapp.repository.QuizRepository;
 import com.quizapp.repository.UserRepository;
+import com.quizapp.utils.JwtUtil;
 
 @Service
 public class UserService {
@@ -29,14 +30,16 @@ public class UserService {
 	private QuestionService questionService;
 	private AttemptedQuizRepository attemptedRepo;
 	private final PasswordEncoder passwordEncoder;
+	private final JwtUtil jwtUtil;
 
 	public UserService(UserRepository repo, QuizRepository quizRepo, QuestionService questionService,
-			AttemptedQuizRepository attemptedRepo, PasswordEncoder passwordEncoder) {
+			AttemptedQuizRepository attemptedRepo, PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
 		this.repo = repo;
 		this.quizRepo = quizRepo;
 		this.questionService = questionService;
 		this.attemptedRepo = attemptedRepo;
 		this.passwordEncoder = passwordEncoder;
+		this.jwtUtil = jwtUtil;
 	}
 
 	public ResponseEntity<?> registerUser(User user) {
@@ -91,6 +94,8 @@ public class UserService {
 		Map<String, String> data = new HashMap<>();
 		data.put("id", encodedUid);
 		data.put("username", user.getFirstName() != null ? user.getFirstName() : "");
+		String jwt = jwtUtil.generateToken(user.getId());
+		data.put("token", jwt);
 		return ResponseEntity.status(HttpStatus.OK).body(data);
 	}
 
